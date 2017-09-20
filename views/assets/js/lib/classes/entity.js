@@ -1,5 +1,5 @@
 class Entity {
-  constructor(x, y, w, h, texture_path, renderer) {
+  constructor(x, y, w, h, rotation, texture_path, renderer) {
     /* Canvas */
     this.ctx = renderer.entity_manager.ctx;
 
@@ -9,6 +9,7 @@ class Entity {
     /* Entity position */
     this.x = x;
     this.y = y;
+    this.rotation = rotation;
 
     /* Rectangular texture */
     this.texture = new Image();
@@ -29,6 +30,16 @@ class Entity {
   }
 
   tick(){
-    this.ctx.drawImage(this.texture, this.x, this.y, this.width, this.height);
+    this.ctx.save();
+
+    this.ctx.translate(this.x + this.width / 2, this.y + this.height / 2);
+
+    this.ctx.rotate(this.rotation / 180 * Math.PI);
+
+    this.ctx.translate(-this.width / 2, -this.height / 2);
+
+    this.ctx.drawImage(this.texture, 0, 0, this.width, this.height);
+
+    this.ctx.restore();
   }
 }
