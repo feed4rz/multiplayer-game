@@ -60,3 +60,7 @@ function animate(){
   entity3.y = 175 - Math.cos(value)*50;
 }
 ```
+
+Following outputs (if all resources used are from this repo):
+
+![GIF](https://i.gyazo.com/694d347d54921a3fea1de2d3d719a194.gif)
